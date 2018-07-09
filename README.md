@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Introduction
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/mgechev/angular-seed.svg)](https://greenkeeper.io/)
@@ -744,3 +745,7 @@ You can follow the [Angular change log here](https://github.com/angular/angular/
 # License
 
 MIT
+=======
+# cordova-seed
+A seed for a Cordova mobile project with an Angular backend
+>>>>>>> Initial commit
