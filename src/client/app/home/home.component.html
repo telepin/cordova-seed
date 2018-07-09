@@ -4,6 +4,10 @@
   <input [(ngModel)]="newName" name="newName" placeholder="Awesome Computer Scientist">
   <button type="submit">Add</button>
 </form>
+<br/>
+<div class="alert alert-danger" role="alert">
+  Should display a bootstrap alert
+</div>
 
 <ul>
   <li *ngFor="let name of names">{{ name }}</li>
