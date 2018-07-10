@@ -48,7 +48,8 @@
   "license": "MIT",
   "engines": {
     "node": ">=6.9.0",
-    "npm": ">=3.10.3"
+    "npm": ">=3.10.3",
+    "cordova": ">=8.0.0"
   },
   "optionalDependencies": {
     "@bahmutov/add-typescript-to-cypress": "^2.0.0",
@@ -155,8 +156,6 @@
     "@angular/router": "^6.0.1",
     "@angular/service-worker": "^6.0.1",
     "bootstrap": "^4.1.1",
-    "cordova-android": "^7.0.0",
-    "cordova-plugin-whitelist": "^1.3.3",
     "core-js": "^2.5.4",
     "intl": "^1.2.5",
     "jquery": "^3.3.1",
