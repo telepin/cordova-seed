@@ -45,4 +45,6 @@ $ npm run build.cordova --**platform**
 $ npm run build.cordova --android
 $ npm run build.cordova --ios
 ```
+Please look at our [Known Issues](https://github.com/mgechev/angular-seed/wiki/Known-Issues) page for any problems with the initial setup.
+
 _For additional commands, please visit [Angular Seed](https://github.com/mgechev/angular-seed)_
