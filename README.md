@@ -40,10 +40,10 @@ $ cordova platform add android
 $ cordova platform add ios
 
 # Builds cordova application
-$ npm run build.cordova --**platform**
+$ npm run cordova.build --**platform**
 # For example
-$ npm run build.cordova --android
-$ npm run build.cordova --ios
+$ npm run cordova.build --android
+$ npm run cordova.build --ios
 ```
 Please look at our [Known Issues](https://github.com/mgechev/angular-seed/wiki/Known-Issues) page for any problems with the initial setup.
 
