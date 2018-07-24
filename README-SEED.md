@@ -33,9 +33,7 @@ Provides fast, reliable and extensible starter for the development of Angular pr
 
 # How to start
 
-**Note** that this seed project requires node v4.x.x or higher and npm 2.14.7 but in order to be able to take advantage of the complete functionality we **strongly recommend node >=v6.5.0 and npm >=3.10.3**.
-
-**Here is how to [speed-up the build on Windows](https://github.com/mgechev/angular-seed/wiki/Speed-up-the-build-on-Windows)**.
+**Note** that this seed project requires node >=v6.9.0 or higher and npm >=3.10.3 but in order to be able to take advantage of the complete functionality we **strongly recommend node >=v8.x.x and npm >=5.x.x**.
 
 In order to start the seed use:
 
@@ -75,32 +73,6 @@ $ npm start -- --app bar
 ```
 _Does not rely on any global dependencies._
 
-# How to start with AoT compilation
-
-**Note** that AoT compilation requires **node v6.5.0 or higher** and **npm 3.10.3 or higher**.
-
-In order to start the seed with AoT use:
-
-```bash
-# prod build with AoT compilation, will output the production application in `dist/prod`
-# the produced code can be deployed (rsynced) to a remote server
-$ npm run build.prod.aot
-```
-
-# Tree-shaking with Rollup
-
-This application provides full support for tree-shaking your production builds with Rollup, which can drastically reduce the size of your application. This is the highest level of optimization currently available.
-
-To run this optimized production build, use:
-
-```bash
-# prod build with AoT compilation and Rollup tree-shaking, will output the production application in `dist/prod`
-# the produced code can be deployed (rsynced) to a remote server
-$ npm run build.prod.rollup.aot
-```
-
-Your project will be compiled ahead of time (AOT), and then the resulting bundle will be tree-shaken and minified. During the tree-shaking process Rollup statically analyses your code, and your dependencies, and includes the bare minimum in your bundle.
-
 **Notes**
 - Beware of non-static/side-effectful imports. These cannot be properly optimized. For this reason, even though tree-shaking is taking place the developer still needs to be careful not to include non-static imports that are unnecessary, as those referenced imports will always end up in final bundle. Special attention should be given to RxJs, which makes heavy use of non-static/side-effectful imports: make sure you only [pipeable operators](https://github.com/ReactiveX/rxjs/blob/master/doc/pipeable-operators.md).
 - UMD modules result in code that cannot be properly optimized. For best results, prefer ES6 modules whenever possible. This includes third-party dependencies: if one is published in both UMD and ES6 modules, go with the ES6 modules version.
@@ -121,7 +93,7 @@ $ npm run i18n
 
 ```bash
 # Build prod app with the language file `dist/locale/messages.en.xlf`
-$ npm run build.prod.rollup.aot -- --lang en
+$ npm run build.prod -- --lang en
 ```
 
 # Dockerization
@@ -183,17 +155,15 @@ It creates a html chart with a file by default, but output can also be json or t
 
 Run the following:
 ```bash
-$ npm run sme.prod # or respectively sme.prod.aot / sme.prod.rollup.aot
+$ npm run sme.prod
 # You can specify the output format by passing the `sme-out-format` parameter
-$ npm run sme.prod.aot -- --sme-out-format json # or html / tsv
+$ npm run sme.prod -- --sme-out-format json # or html / tsv
 ```
 
 # Table of Contents
 
 - [Introduction](#introduction)
 - [How to start](#how-to-start)
-- [How to start with Aot](#how-to-start-with-aot-compilation)
-- [Tree-shaking with Rollup](#tree-shaking-with-rollup)
 - [Dockerization](#dockerization)
   + [How to build and start the dockerized version of the application](#how-to-build-and-start-the-dockerized-version-of-the-application)
   + [Development build and deployment](#development-build-and-deployment)
@@ -219,9 +189,9 @@ $ npm run sme.prod.aot -- --sme-out-format json # or html / tsv
 Default application server configuration
 
 ```js
-var PORT             = 5555;
-var DOCS_PORT        = 4003;
-var APP_BASE         = '/';
+const PORT             = 5555;
+const DOCS_PORT        = 4003;
+const APP_BASE         = '/';
 ```
 
 Configure at runtime
@@ -336,8 +306,8 @@ Forks of this project demonstrate how to extend and integrate with other librari
 ```
 .
 ├── .docker
-│   ├── dist-build.development.dockerfile  <- Dockerfile for development environment
-│   └── dist-build.production.dockerfile   <- Dockerfile for production environment
+│   ├── dist-build.development.dockerfile  <- Dockerfile for development environment
+│   └── dist-build.production.dockerfile   <- Dockerfile for production environment
 ├── .dockerignore              <- ignore file for the docker builds
 ├── LICENSE
 ├── README.md
@@ -362,173 +332,169 @@ Forks of this project demonstrate how to extend and integrate with other librari
 |   |   └── index.js
 |   └── tsconfig.json
 ├── src
-│   ├── client
-│   │   ├── app
-│   │   │   ├── about
-│   │   │   │   ├── about-routing.module.ts
-│   │   │   │   ├── about.component.css
-│   │   │   │   ├── about.component.html
-│   │   │   │   ├── about.component.spec.ts
-│   │   │   │   ├── about.component.ts
-│   │   │   │   └── about.module.ts
-│   │   │   ├── app-routing.module.ts
-│   │   │   ├── app.component.css
-│   │   │   ├── app.component.html
-│   │   │   ├── app.component.spec.ts
-│   │   │   ├── app.component.ts
-│   │   │   ├── app.module.ts
-│   │   │   ├── home
-│   │   │   │   ├── home-routing.module.ts
-│   │   │   │   ├── home.component.css
-│   │   │   │   ├── home.component.html
-│   │   │   │   ├── home.component.spec.ts
-│   │   │   │   ├── home.component.ts
-│   │   │   │   └── home.module.ts
-│   │   │   ├── i18n.providers.ts
-│   │   │   ├── main-prod.ts
-│   │   │   ├── main.ts
-│   │   │   └── shared
-│   │   │       ├── config
-│   │   │       │   └── env.config.ts
-│   │   │       ├── name-list
-│   │   │       │   ├── name-list.service.spec.ts
-│   │   │       │   └── name-list.service.ts
-│   │   │       ├── navbar
-│   │   │       │   ├── navbar.component.css
-│   │   │       │   ├── navbar.component.html
-│   │   │       │   └── navbar.component.ts
-│   │   │       ├── shared.module.ts
-│   │   │       └── toolbar
-│   │   │           ├── toolbar.component.css
-│   │   │           ├── toolbar.component.html
-│   │   │           └── toolbar.component.ts
-│   │   ├── assets
-│   │   │   ├── data.json
-│   │   │   ├── favicon
-│   │   │   │   ├── favicon-DEV.ico
-│   │   │   │   └── favicon-PROD.ico
-│   │   │   └── svg
-│   │   │       └── more.svg
-│   │   ├── css
-│   │   │   └── main.css
-│   │   ├── index.html
-│   │   ├── ngsw-config.json
-│   │   ├── system-config.ts
-│   │   └── tsconfig.json
+│   ├── client
+│   │   ├── app
+│   │   │   ├── about
+│   │   │   │   ├── about-routing.module.ts
+│   │   │   │   ├── about.component.css
+│   │   │   │   ├── about.component.html
+│   │   │   │   ├── about.component.spec.ts
+│   │   │   │   ├── about.component.ts
+│   │   │   │   └── about.module.ts
+│   │   │   ├── app-routing.module.ts
+│   │   │   ├── app.component.css
+│   │   │   ├── app.component.html
+│   │   │   ├── app.component.spec.ts
+│   │   │   ├── app.component.ts
+│   │   │   ├── app.module.ts
+│   │   │   ├── home
+│   │   │   │   ├── home-routing.module.ts
+│   │   │   │   ├── home.component.css
+│   │   │   │   ├── home.component.html
+│   │   │   │   ├── home.component.spec.ts
+│   │   │   │   ├── home.component.ts
+│   │   │   │   └── home.module.ts
+│   │   │   ├── i18n.providers.ts
+│   │   │   ├── main-prod.ts
+│   │   │   ├── main.ts
+│   │   │   └── shared
+│   │   │       ├── config
+│   │   │       │   └── env.config.ts
+│   │   │       ├── name-list
+│   │   │       │   ├── name-list.service.spec.ts
+│   │   │       │   └── name-list.service.ts
+│   │   │       ├── navbar
+│   │   │       │   ├── navbar.component.css
+│   │   │       │   ├── navbar.component.html
+│   │   │       │   └── navbar.component.ts
+│   │   │       ├── shared.module.ts
+│   │   │       └── toolbar
+│   │   │           ├── toolbar.component.css
+│   │   │           ├── toolbar.component.html
+│   │   │           └── toolbar.component.ts
+│   │   ├── assets
+│   │   │   ├── data.json
+│   │   │   ├── favicon
+│   │   │   │   ├── favicon-DEV.ico
+│   │   │   │   └── favicon-PROD.ico
+│   │   │   └── svg
+│   │   │       └── more.svg
+│   │   ├── css
+│   │   │   └── main.css
+│   │   ├── index.html
+│   │   ├── ngsw-config.json
+│   │   ├── system-config.ts
+│   │   └── tsconfig.json
 ├── test-config.js             <- testing configuration
 ├── test-main.js               <- karma test launcher
 ├── tools
-│   ├── README.md              <- build documentation
-│   ├── config
-│   │   ├── banner-256.txt
-│   │   ├── banner.txt
-│   │   ├── project.config.ts  <- configuration of the specific project
-│   │   ├── project.tasks.json <- override composite gulp tasks
-│   │   ├── seed.config.ts     <- generic configuration of the seed project
-│   │   ├── seed.config.interfaces.ts
-│   │   ├── seed.tasks.json    <- default composite gulp tasks
-│   │   └── seed.tslint.json   <- generic tslint configuration of the seed project
-│   ├── config.ts              <- exported configuration (merge both seed.config and project.config, project.config overrides seed.config)
-│   ├── debug.ts
-│   ├── env                    <- environment configuration
-│   │   ├── base.ts
-│   │   ├── dev.ts
-│   │   ├── env-config.interface.ts
-│   │   └── prod.ts
-│   ├── manual_typings
-│   │   ├── project            <- manual ambient typings for the project
-│   │   │   └── sample.package.d.ts
-│   │   └── seed               <- seed manual ambient typings
-│   │       ├── autoprefixer.d.ts
-│   │       ├── cssnano.d.ts
-│   │       ├── express-history-api-fallback.d.ts
-│   │       ├── istream.d.ts
-│   │       ├── karma.d.ts
-│   │       ├── merge-stream.d.ts
-│   │       ├── open.d.ts
-│   │       ├── slash.d.ts
-│   │       ├── systemjs-builder.d.ts
-│   │       └── tildify.d.ts
-│   ├── tasks                  <- gulp tasks
-│   │   ├── assets_task.ts
-│   │   ├── css_task.ts
-│   │   ├── project            <- project specific gulp tasks
-│   │   │   └── sample.task.ts
-│   │   └── seed               <- seed generic gulp tasks. They can be overriden by the project specific gulp tasks
-│   │   │   ├── build.assets.dev.ts
-│   │   │   ├── build.assets.prod.ts
-│   │   │   ├── build.bundles.app.aot.ts
-│   │   │   ├── build.bundles.app.rollup.aot.ts
-│   │   │   ├── build.bundles.app.ts
-│   │   │   ├── build.bundles.ts
-│   │   │   ├── build.docs.ts
-│   │   │   ├── build.html_css.ts
-│   │   │   ├── build.index.dev.ts
-│   │   │   ├── build.index.prod.ts
-│   │   │   ├── build.js.dev.ts
-│   │   │   ├── build.js.prod.aot.ts
-│   │   │   ├── build.js.prod.rollup.aot.ts
-│   │   │   ├── build.js.prod.ts
-│   │   │   ├── build.js.test.ts
-│   │   │   ├── build.sme.prod.aot.ts
-│   │   │   ├── build.sme.prod.rollup.aot.ts
-│   │   │   ├── build.sme.prod.ts
-│   │   │   ├── build.tools.ts
-│   │   │   ├── check.tools.ts
-│   │   │   ├── check.versions.ts
-│   │   │   ├── clean.all.ts
-│   │   │   ├── clean.coverage.ts
-│   │   │   ├── clean.dev.ts
-│   │   │   ├── clean.prod.ts
-│   │   │   ├── clean.sme.ts
-│   │   │   ├── clean.tools.ts
-│   │   │   ├── clear.files.ts
-│   │   │   ├── compile.ahead.prod.ts
-│   │   │   ├── copy.prod.rollup.aot.ts
-│   │   │   ├── copy.prod.ts
-│   │   │   ├── e2e.ts
-│   │   │   ├── generate.manifest.ts
-│   │   │   ├── i18n.build.ts
-│   │   │   ├── i18n.merge.ts
-│   │   │   ├── karma.run.ts
-│   │   │   ├── karma.run.with_coverage.ts
-│   │   │   ├── karma.run.without_coverage.ts
-│   │   │   ├── karma.watch.ts
-│   │   │   ├── minify.bundles.ts
-│   │   │   ├── minify.index.ts
-│   │   │   ├── noop.ts
-│   │   │   ├── print.banner.ts
-│   │   │   ├── serve.coverage.ts
-│   │   │   ├── serve.coverage.watch.ts
-│   │   │   ├── serve.docs.ts
-│   │   │   ├── server.prod.ts
-│   │   │   ├── server.start.ts
-│   │   │   ├── start.deving.ts
-│   │   │   ├── sw.manifest.static.ts
-│   │   │   ├── test.watch.ts
-│   │   │   ├── transpile.bundles.rollup.aot.ts
-│   │   │   ├── tslint.ts
-│   │   │   ├── watch.dev.ts
-│   │   │   └── watch.test.ts
-│   │   ├── task.ts
-│   │   └── typescript_task.ts
-│   ├── utils                  <- build utils
-│   │   ├── project            <- project specific gulp utils
-│   │   │   └── sample_util.ts
-│   │   ├── project.utils.ts
-│   │   ├── seed               <- seed specific gulp utils
-│   │   │   ├── build_optimizer.ts
-│   │   │   ├── clean.ts
-│   │   │   ├── code_change_tools.ts
-│   │   │   ├── karma.start.ts
-│   │   │   ├── server.ts
-│   │   │   ├── sme.ts
-│   │   │   ├── tasks_tools.ts
-│   │   │   ├── template_locals.ts
-│   │   │   ├── tsproject.ts
-│   │   │   └── watch.ts
-│   │   └── seed.utils.ts
-│   └── utils.ts
+│   ├── README.md              <- build documentation
+│   ├── config
+│   │   ├── banner-256.txt
+│   │   ├── banner.txt
+│   │   ├── project.config.ts  <- configuration of the specific project
+│   │   ├── project.tasks.json <- override composite gulp tasks
+│   │   ├── seed.config.ts     <- generic configuration of the seed project
+│   │   ├── seed.config.interfaces.ts
+│   │   ├── seed.tasks.json    <- default composite gulp tasks
+│   │   └── seed.tslint.json   <- generic tslint configuration of the seed project
+│   ├── config.ts              <- exported configuration (merge both seed.config and project.config, project.config overrides seed.config)
+│   ├── debug.ts
+│   ├── env                    <- environment configuration
+│   │   ├── base.ts
+│   │   ├── dev.ts
+│   │   ├── env-config.interface.ts
+│   │   └── prod.ts
+│   ├── manual_typings
+│   │   ├── project            <- manual ambient typings for the project
+│   │   │   └── sample.package.d.ts
+│   │   └── seed               <- seed manual ambient typings
+│   │       ├── autoprefixer.d.ts
+│   │       ├── cssnano.d.ts
+│   │       ├── express-history-api-fallback.d.ts
+│   │       ├── istream.d.ts
+│   │       ├── karma.d.ts
+│   │       ├── merge-stream.d.ts
+│   │       ├── open.d.ts
+│   │       ├── slash.d.ts
+│   │       ├── systemjs-builder.d.ts
+│   │       └── tildify.d.ts
+│   ├── tasks                  <- gulp tasks
+│   │   ├── assets_task.ts
+│   │   ├── css_task.ts
+│   │   ├── project            <- project specific gulp tasks
+│   │   │   └── sample.task.ts
+│   │   └── seed               <- seed generic gulp tasks. They can be overriden by the project specific gulp tasks
+│   │   │   ├── build.assets.dev.ts
+│   │   │   ├── build.assets.prod.ts
+│   │   │   ├── build.bundles.app.rollup.aot.ts
+│   │   │   ├── build.bundles.ts
+│   │   │   ├── build.docs.ts
+│   │   │   ├── build.html_css.ts
+│   │   │   ├── build.index.dev.ts
+│   │   │   ├── build.index.prod.ts
+│   │   │   ├── build.js.dev.ts
+│   │   │   ├── build.js.prod.rollup.aot.ts
+│   │   │   ├── build.js.test.ts
+│   │   │   ├── build.sme.prod.aot.ts
+│   │   │   ├── build.sme.prod.rollup.aot.ts
+│   │   │   ├── build.sme.prod.ts
+│   │   │   ├── build.tools.ts
+│   │   │   ├── check.tools.ts
+│   │   │   ├── check.versions.ts
+│   │   │   ├── clean.all.ts
+│   │   │   ├── clean.coverage.ts
+│   │   │   ├── clean.dev.ts
+│   │   │   ├── clean.prod.ts
+│   │   │   ├── clean.sme.ts
+│   │   │   ├── clean.tools.ts
+│   │   │   ├── clear.files.ts
+│   │   │   ├── compile.ahead.prod.ts
+│   │   │   ├── copy.prod.rollup.aot.ts
+│   │   │   ├── copy.prod.ts
+│   │   │   ├── e2e.ts
+│   │   │   ├── generate.manifest.ts
+│   │   │   ├── i18n.build.ts
+│   │   │   ├── i18n.merge.ts
+│   │   │   ├── karma.run.ts
+│   │   │   ├── karma.run.with_coverage.ts
+│   │   │   ├── karma.run.without_coverage.ts
+│   │   │   ├── karma.watch.ts
+│   │   │   ├── minify.bundles.ts
+│   │   │   ├── minify.index.ts
+│   │   │   ├── noop.ts
+│   │   │   ├── print.banner.ts
+│   │   │   ├── serve.coverage.ts
+│   │   │   ├── serve.coverage.watch.ts
+│   │   │   ├── serve.docs.ts
+│   │   │   ├── server.prod.ts
+│   │   │   ├── server.start.ts
+│   │   │   ├── start.deving.ts
+│   │   │   ├── sw.manifest.static.ts
+│   │   │   ├── test.watch.ts
+│   │   │   ├── transpile.bundles.rollup.aot.ts
+│   │   │   ├── tslint.ts
+│   │   │   ├── watch.dev.ts
+│   │   │   └── watch.test.ts
+│   │   ├── task.ts
+│   │   └── typescript_task.ts
+│   ├── utils                  <- build utils
+│   │   ├── project            <- project specific gulp utils
+│   │   │   └── sample_util.ts
+│   │   ├── project.utils.ts
+│   │   ├── seed               <- seed specific gulp utils
+│   │   │   ├── build_optimizer.ts
+│   │   │   ├── clean.ts
+│   │   │   ├── code_change_tools.ts
+│   │   │   ├── karma.start.ts
+│   │   │   ├── server.ts
+│   │   │   ├── sme.ts
+│   │   │   ├── tasks_tools.ts
+│   │   │   ├── template_locals.ts
+│   │   │   ├── tsproject.ts
+│   │   │   └── watch.ts
+│   │   └── seed.utils.ts
+│   └── utils.ts
 ├── tsconfig.json              <- configuration of the typescript project (ts-node, which runs the tasks defined in gulpfile.ts)
 ├── tslint.json                <- tslint configuration
 └── yarn.lock
