@@ -42,8 +42,7 @@
   "license": "MIT",
   "engines": {
     "node": ">=6.9.0",
-    "npm": ">=3.10.3",
-    "cordova": ">=8.0.0"
+    "npm": ">=3.10.3"
   },
   "optionalDependencies": {
     "@bahmutov/add-typescript-to-cypress": "^2.0.0",
@@ -80,6 +79,7 @@
     "async": "^2.6.0",
     "autoprefixer": "^9.0.0",
     "browser-sync": "^2.23.6",
+    "browserslist": "^4.0.1",
     "codelyzer": "^4.2.1",
     "connect-history-api-fallback": "^1.5.0",
     "cssnano": "^4.0.0",
@@ -117,7 +117,7 @@
     "open": "0.0.5",
     "remap-istanbul": "^0.11.0",
     "rimraf": "^2.6.2",
-    "rollup": "~0.63.0",
+    "rollup": "~0.64.0",
     "rollup-plugin-commonjs": "^9.0.0",
     "rollup-plugin-includepaths": "0.2.3",
     "rollup-plugin-node-resolve": "^3.3.0",
@@ -138,7 +138,7 @@
     "yargs": "^12.0.1"
   },
   "dependencies": {
-    "@angular-devkit/build-optimizer": "^0.6.1",
+    "@angular-devkit/build-optimizer": "^0.7.0",
     "@angular/animations": "^6.0.1",
     "@angular/common": "^6.0.1",
     "@angular/compiler": "^6.0.1",
@@ -149,6 +149,7 @@
     "@angular/router": "^6.0.1",
     "@angular/service-worker": "^6.0.1",
     "bootstrap": "^4.1.1",
+    "cordova": "^8.0.0",
     "core-js": "^2.5.4",
     "intl": "^1.2.5",
     "jquery": "^3.3.1",
@@ -163,6 +164,8 @@
     "plugins": {
       "cordova-plugin-whitelist": {}
     },
-    "platforms": []
+    "platforms": [
+      "android"
+    ]
   }
 }

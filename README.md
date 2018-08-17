@@ -11,19 +11,10 @@ This seed lets you take advantage of:
 - All the additional incredible tools included in the [Angular Seed](https://github.com/mgechev/angular-seed) project
 
 # The Basics
-**Note: We recommend node >= 6.5.0, npm >= v3.10.3, cordova >= v8.0.0**
+**Note: We recommend node >= 6.5.0, npm >= v3.10.3**
 
 In order to start using the seed:
 ```bash
-# Install cordova
-
-# On Windows
-$ npm install -g cordova
-
-# On UNIX
-$ sudo npm install -g cordova
-
-
 # Install project dependencies
 $ npm install
 
